@@ -22,7 +22,7 @@ html, body {
     width: 100%;
     background: #ebe3deec;
     border-bottom: 5px solid #f5f4f3;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.295);
     flex-shrink: 0;
     position: relative;
     z-index: 10;
@@ -37,6 +37,13 @@ html, body {
     align-items: center;
     justify-content: center; /* Mantiene la imagen centrada en su zona */
 }
+.header-center {
+    flex: 0 0 70%; /* Ocupa exactamente el 70% restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
 
 .header-side:last-child {
     justify-content: center;
@@ -47,14 +54,6 @@ html, body {
     width: 100%;
     max-height: 8vh; /* Se encoge el alto según la pantalla */
     object-fit: contain;
-}
-
-.header-center {
-    flex: 0 0 70%; /* Ocupa exactamente el 70% restante */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
 }
 
 .header-center img {
@@ -71,8 +70,8 @@ html, body {
     align-items: center;
     gap: 10px;
     z-index: 100;
-    padding: 15px 20px 5px 20px; /* Separado de los extremos */
-    width: 100%;
+    padding: 10px 10px 0 0px; /* Separado de los extremos */
+    width: 100%; /*ancho*/
     flex-shrink: 0;
     overflow-x: auto; /* Scroll horizontal en móviles si no caben los botones */
 }
@@ -95,13 +94,13 @@ html, body {
     transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
     overflow: hidden;
     white-space: nowrap;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
-    border: solid 3px;
+    box-shadow: 5px 0px 2px rgba(0, 0, 0, 0.377);
+    border: solid 4px;
    
 }
 
 /* ASIGNACIÓN DE COLORES INDEPENDIENTES (Incluyendo el nuevo botón Home de primero) */
-.sidebar-nav .tab-btn:nth-child(1) { --btn-color: #3498db; --btn-hover-color: #5dade2; } /* Home */
+.sidebar-nav .tab-btn:nth-child(1) { --btn-color: #0a97f5; --btn-hover-color: #5dade2; } /* Home */
 .sidebar-nav .tab-btn:nth-child(2) { --btn-color: #e74c3c; --btn-hover-color: #f1948a; } 
 .sidebar-nav .tab-btn:nth-child(3) { --btn-color: #2ecc71; --btn-hover-color: #82e0aa; } 
 .sidebar-nav .tab-btn:nth-child(4) { --btn-color: #f39c12; --btn-hover-color: #f8c471; } 
@@ -116,14 +115,14 @@ html, body {
 
 /* Estado de Pestaña Activa en reposo */
 .tab-btn.active {
-    background-color: #0496ff; 
+    background-color: #f4e4db; 
     color: #ffffff;
     width: 70px; 
 }
 
 /* Iconos de los botones */
 .btn-icon {
-    width: 26px;
+    width: 50px;
     height: 26px;
     flex-shrink: 0;
     object-fit: contain;
