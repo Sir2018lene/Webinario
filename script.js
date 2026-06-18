@@ -12,10 +12,9 @@ const modalData = {
                 { titulo: "Jugar", desc: "Los estudiantes juegan y experimentan con diversos materiales, explorando nuevas posibilidades." },
                 { titulo: "Compartir", desc: "En este momento, se procede a compartir las creaciones realizadas con los demás." },
                 { titulo: "Reflexionar", desc: "Finalmente, se realiza un proceso de reflexión sobre lo aprendido durante toda la experiencia" }
-            ],
-            audio: { nombre: "Audio Guía: Fundamentos Curriculares", url: "audios/modelo/podcast-fundamentos.mp3" },
-            pdf: { nombre: "Documento Completo de Fundamentos", url: "txt/fundamentos-programa.pdf" }
-        },
+            ]
+            // Se eliminaron las propiedades de audio y pdf de este nodo
+       },
         btn2: {
             title: "Modelo de Parsons",
             image: "img/img-Parson.png",
@@ -28,9 +27,8 @@ const modalData = {
                 { titulo: "Estilo y forma", desc: "Se reconoce que existen distintas maneras de hacer arte. Se analizan técnicas y materiales." },
                 { titulo: "Juicio crítico", desc: "La persona logra argumentar considerando contexto, intención y significado." },
                 { titulo: "Fase integradora", desc: "Integra todas las fases anteriores desde múltiples perspectivas." }
-            ],
-            audio: { nombre: "Audio Guía: Estrategias Metodológicas", url: "audios/modelo/podcast-metodologias.mp3" },
-            pdf: { nombre: "Manual de Estrategias Didácticas PDF", url: "txt/manual-metodologias.pdf" }
+            ]
+            // Se eliminaron las propiedades de audio y pdf de este nodo
         }
     },
     // DATOS CORREGIDOS Y OPERATIVOS PARA INFO2
@@ -41,7 +39,7 @@ const modalData = {
     },
     info2_doc2: {
         title: "Visualización: Plantilla de Planeamiento Correlacionado",
-        pdfUrl: "txt/Planeamiento_Correlacionado_AP.pdf",
+        pdfUrl: "txt/Planeamiento Correlacionado AP.pdf",
         text: "Matriz pedagógica de correlación de contenidos curriculares del programa."
     },
     // SECCIONES GENERALES CON LISTADOS DE AUDIOS Y DOCUMENTOS
@@ -49,7 +47,6 @@ const modalData = {
         title: "El componente de Proyecto en la clase de Artes Plásticas",
         text: "El componente Proyecto en la asignatura de Artes Plásticas para I y II Ciclo.",
         image: "img/componente-proyecto.png",
-     
         pdfs: [
             { nombre: "Orientaciones para el desarrollo y evaluación del componente Proyecto", url: "txt/El proyecto I y II Ciclos Versión Diagramado.pdf" }
         ]
@@ -65,23 +62,15 @@ const modalData = {
         pdfUrl: "txt/Orientaciones Unidocentes AP.pdf",
         text: "Matriz pedagógica de correlación de contenidos curriculares del programa."
     }, 
-
      info4_doc3: {
         title: "Visualización: Cartel de alcance y secuencia para escuelas unidocentes",
         pdfUrl: "txt/CARTEL DE ALCANCE Y SECUENCIA ARTES PLASTICAS (2).pdf",
         text: "Matriz pedagógica de correlación de contenidos curriculares del programa."
     },
-
     info5: {
         title: "Flexibilidad Curricular",
         text: "Estrategias de flexibilización y apoyo didáctico complementario.",
-        image: "img/museo.png",
-        audios: [
-            { nombre: "Criterios de Flexibilidad", url: "audios/cultural/audio1.mp3" }
-        ],
-        pdfs: [
-            { nombre: "Estrategias de Aula.pdf", url: "txt/plan-cultural.pdf" }
-        ]
+        image: "img/museo.png"
     },
     info6: {
         title: "Buenas prácticas docentes",
@@ -96,9 +85,6 @@ const modalData = {
     }
 };
 
-
-
-
 // ==========================================================================
 // FUNCIÓN PRINCIPAL DE APERTURA Y CONTROL DE MODALES (openModal)
 // ==========================================================================
@@ -106,7 +92,7 @@ function openModal(id, tipo) {
     const modal = document.getElementById('customModal');
     const body = document.getElementById('modal-body');
 
-    // CASO ESPECIAL: Vista ampliada de imágenes de la galería (info6) al 60% de la pantalla
+    // CASO ESPECIAL: Vista ampliada de imágenes de la galería (info6 e imágenes interactivas modales)
     if (tipo === 'visualizar_imagen') {
         body.innerHTML = `
             <h2 style="color: #01263f; margin-top: 0; text-align: center;">Vista Ampliada</h2>
@@ -115,7 +101,7 @@ function openModal(id, tipo) {
             </div>
         `;
         modal.style.display = 'flex';
-        return; // Interrumpe la ejecución para evitar leer la base de datos común
+        return; 
     }
 
     let data;
@@ -123,7 +109,7 @@ function openModal(id, tipo) {
 
     // Control de ruteo inteligente de datos según el ID de origen
     if (id.startsWith('info1-')) {
-        const subClave = id.split('-')[1]; // Extrae 'btn1' o 'btn2'
+        const subClave = id.split('-')[1]; 
         data = modalData['info1'][subClave];
         esBotonInfo1 = true;
     } else {
@@ -134,7 +120,7 @@ function openModal(id, tipo) {
 
     let contenidoHTML = '';
 
-    // RENDERIZADO EXCLUSIVO PREMIUM PARA LOS BOTONES INTERNOS DE INFO1
+    // RENDERIZADO EXCLUSIVO PARA LOS BOTONES INTERNOS DE INFO1 (Sin descargas ni audios)
     if (esBotonInfo1) {
         contenidoHTML += `<p style="text-align: left; color: #333; font-size: 1rem; line-height: 1.5; margin-bottom: 20px;">${data.texto1}</p>`;
         contenidoHTML += `<ul style="text-align: left; list-style-type: disc; padding-left: 20px; margin-bottom: 25px;">`;
@@ -147,33 +133,18 @@ function openModal(id, tipo) {
         });
         contenidoHTML += `</ul>`;
         contenidoHTML += `<p style="text-align: left; color: #666; font-style: italic; margin-bottom: 25px; border-left: 4px solid #fcda6fff; padding-left: 10px;">${data.texto2}</p>`;
-        contenidoHTML += `
-            <hr style="border: 1px solid #eee; margin: 20px 0;">
-            <div style="display: flex; flex-direction: column; gap: 15px; background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #0496ff;">
-                <div class="audio-item" style="border: none; padding: 0; background: transparent; margin: 0;">
-                    <div class="audio-info" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <label style="font-weight: bold; color: #01263f;">${data.audio.nombre}</label>
-                        <a href="${data.audio.url}" download="${data.audio.nombre}.mp3" class="download-link" style="background-color: #01263f; padding: 5px 12px; font-size: 0.8rem; border-radius: 4px; text-decoration: none; color: white;">Descargar Audio</a>
-                    </div>
-                    <audio controls src="${data.audio.url}" style="width: 100%;"></audio>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 15px; border-top: 1px dashed #ccc;">
-                    <span style="font-weight: bold; color: #01263f; font-size: 0.95rem;">${data.pdf.nombre}</span>
-                    <a href="${data.pdf.url}" class="download-link" download target="_blank" style="background-color: #27ae60; padding: 8px 15px; font-size: 0.85rem; border-radius: 5px; text-decoration: none; color: white; font-weight: bold;">Descargar PDF</a>
-                </div>
-            </div>`;
 
         body.innerHTML = `
             <h2 style="color: #01263f; margin-top: 0; text-align: center;">${data.title}</h2>
             <div style="text-align: center; margin: 20px 0;">
-                <img src="${data.image}" class="modal-img" alt="Miniatura de la sección" style="display: inline-block; max-width: 90%; height: auto; border-radius: 10px;">
+                <img src="${data.image}" class="modal-img" alt="Miniatura de la sección" style="display: inline-block; max-width: 90%; height: auto; border-radius: 10px; cursor: pointer;" onclick="openModal('${data.image}', 'visualizar_imagen')">
             </div>
             <hr style="border: 1px solid #fcda6fff; margin: 20px 0;">
             ${contenidoHTML}
         `;
 
     } else {
-        // RENDERIZADO ESTÁNDAR PARA COMPONENTES DE LISTADOS (AUDIOS / TRANCRIPCIONES)
+        // RENDERIZADO ESTÁNDAR PARA COMPONENTES DE LISTADOS
         if (tipo === 'audios' && data.audios) {
             contenidoHTML = `<h3>Lista de Reproducción</h3><div class="audio-list-modal">`;
             data.audios.forEach((audio) => {
@@ -200,7 +171,7 @@ function openModal(id, tipo) {
             contenidoHTML += `</div>`;
         }
 
-        // INYECTOR DE ELEMENTO MULTIMEDIA PRINCIPAL (Imagen estática o Visor Iframe PDF)
+        // INYECTOR DE ELEMENTO MULTIMEDIA PRINCIPAL
         let elementoMultimediaHTML = '';
         if (tipo === 'visualizar_pdf') {
             elementoMultimediaHTML = `
@@ -211,8 +182,9 @@ function openModal(id, tipo) {
                     </div>
                 </div>`;
         } else {
+            // Se añade cursor:pointer y onclick dinámico a la imagen del modal de info3 u otros componentes estándar
             elementoMultimediaHTML = `
-                <div style="text-align: center;"><img src="${data.image}" class="modal-img" alt="Miniatura"></div>`;
+                <div style="text-align: center;"><img src="${data.image}" class="modal-img" alt="Miniatura" style="cursor: pointer;" onclick="openModal('${data.image}', 'visualizar_imagen')"></div>`;
         }
 
         let separadorOpcional = contenidoHTML !== '' ? `<hr style="border: 1px solid #fcda6fff; margin: 20px 0;">` : '';
@@ -236,11 +208,9 @@ function closeModal() {
     const modal = document.getElementById('customModal');
     modal.style.display = 'none';
     
-    // Pausar y resetear pistas de audio activas dentro del modal
     const audios = modal.querySelectorAll('audio');
     audios.forEach(a => { a.pause(); a.currentTime = 0; });
 
-    // Pausar y resetear pistas de video activas si las hubiera
     const videos = modal.querySelectorAll('video');
     videos.forEach(v => { v.pause(); v.currentTime = 0; });
 }
